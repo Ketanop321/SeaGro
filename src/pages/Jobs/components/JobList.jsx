@@ -130,9 +130,14 @@ export function JobList({ searchQuery, filters }) {
                       {job.company_name}
                     </p>
                   </div>
-                  <button className="px-4 py-2 bg-teal-50 text-teal-700 rounded-xl hover:bg-teal-100 transition-colors">
+                  <a
+                    href={job.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-2 bg-teal-50 text-teal-700 rounded-xl hover:bg-teal-100 transition-colors inline-block"
+                  >
                     Apply Now
-                  </button>
+                  </a>
                 </div>
                 <div className="mt-4 flex flex-wrap gap-4 text-sm text-gray-600">
                   <span className="flex items-center">

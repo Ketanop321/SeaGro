@@ -7,7 +7,6 @@ import { ActivityFeed } from './components/ActivityFeed';
 import { ProfileSidebar } from './components/ProfileSidebar';
 
 import { useAuth } from '../../context/AuthContext';
-import { supabase } from '../../utils/supabase';
 import { toast } from 'react-hot-toast';
 
 export function Profile() {

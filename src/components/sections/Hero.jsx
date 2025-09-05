@@ -1,6 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Compass, Anchor } from 'lucide-react';
-import { Button } from '../ui/Button';
 
 export function Hero() {
   return (
@@ -22,12 +22,20 @@ export function Hero() {
               Shape your future with cutting-edge resources and meaningful connections.
             </p>
             <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-              <Button variant="secondary" icon={Compass}>
+              <Link
+                to="/start-exploring"
+                className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 transition-colors"
+              >
+                <Compass className="w-5 h-5 mr-2" />
                 Start Exploring
-              </Button>
-              <Button variant="outline" icon={Anchor}>
+              </Link>
+              <Link
+                to="/learn-more"
+                className="inline-flex items-center px-6 py-3 border-2 border-white text-base font-medium rounded-md text-white hover:bg-white hover:text-teal-600 transition-colors"
+              >
+                <Anchor className="w-5 h-5 mr-2" />
                 Learn More
-              </Button>
+              </Link>
             </div>
           </div>
           

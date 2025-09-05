@@ -1,34 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { supabase } from '../../utils/supabase';
+import axios from 'axios';
 import { CreatePost } from './components/CreatePost';
 import { Post } from './components/Post';
+import { useAuth } from '../../context/AuthContext';
+import { toast } from 'react-hot-toast';
 
 export function Community() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { user } = useAuth();
 
   const fetchPosts = async () => {
     try {
-      const { data, error } = await supabase
-        .from('posts')
-        .select(`
-          *,
-          likes (
-            user_id
-          ),
-          comments (
-            id,
-            content,
-            user_id,
-            created_at
-          )
-        `)
-        .order('created_at', { ascending: false });
-
-      if (error) throw error;
-      setPosts(data || []);
+      const response = await axios.get('/api/posts', {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      setPosts(response.data || []);
     } catch (error) {
       console.error('Error fetching posts:', error);
+      toast.error('Failed to load posts');
     } finally {
       setLoading(false);
     }
@@ -36,20 +28,10 @@ export function Community() {
 
   // Initial fetch
   useEffect(() => {
-    fetchPosts();
-
-    // Set up real-time subscription
-    const subscription = supabase
-      .channel('public:posts')
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'posts' }, () => {
-        fetchPosts();
-      })
-      .subscribe();
-
-    return () => {
-      subscription.unsubscribe();
-    };
-  }, []);
+    if (user) {
+      fetchPosts();
+    }
+  }, [user]);
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-8">

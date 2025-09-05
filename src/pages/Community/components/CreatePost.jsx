@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Image, Send } from 'lucide-react';
-import { supabase } from '../../../utils/supabase';
+import axios from 'axios';
 import { useAuth } from '../../../context/AuthContext';
 import { toast } from 'react-hot-toast';
 
@@ -16,29 +16,18 @@ export function CreatePost({ onPostCreated }) {
 
     setLoading(true);
     try {
-      let mediaUrl = null;
+      const formData = new FormData();
+      formData.append('content', content);
       if (mediaFile) {
-        const fileExt = mediaFile.name.split('.').pop();
-        const fileName = `${crypto.randomUUID()}.${fileExt}`;
-        const { data: fileData, error: fileError } = await supabase.storage
-          .from('post-media')
-          .upload(fileName, mediaFile);
-
-        if (fileError) throw fileError;
-        mediaUrl = fileData.path;
+        formData.append('media', mediaFile);
       }
 
-      const { error: postError } = await supabase
-        .from('posts')
-        .insert([
-          {
-            content,
-            media_url: mediaUrl,
-            user_id: user._id
-          }
-        ]);
-
-      if (postError) throw postError;
+      await axios.post('/api/posts', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      });
 
       setContent('');
       setMediaFile(null);

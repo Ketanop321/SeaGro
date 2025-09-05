@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { MapPin, Battery, Star } from 'lucide-react';
+import { toast } from 'react-hot-toast';
 
 function BikeCardSkeleton() {
   return (
@@ -64,6 +65,18 @@ export function BikeList({ filters = {} }) {
     setCurrentPage(pageNumber);
   };
 
+  // Handle bike reservation
+  const handleReserveBike = (bike) => {
+    // Simulate reservation process
+    toast.success(`Bike "${bike.name}" reserved successfully! Check your email for details.`);
+    
+    // In a real app, you would:
+    // 1. Check if user is authenticated
+    // 2. Make API call to reserve the bike
+    // 3. Handle payment if required
+    // 4. Send confirmation
+  };
+
   return (
     <div className="space-y-4">
       {loading ? (
@@ -96,7 +109,10 @@ export function BikeList({ filters = {} }) {
                       </div>
                     )}
                   </div>
-                  <button className="mt-4 w-full px-4 py-2 bg-teal-50 text-teal-700 rounded-xl">
+                  <button 
+                    onClick={() => handleReserveBike(bike)}
+                    className="mt-4 w-full px-4 py-2 bg-teal-50 text-teal-700 rounded-xl hover:bg-teal-100 transition-colors"
+                  >
                     Reserve Now
                   </button>
                 </div>
