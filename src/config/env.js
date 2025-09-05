@@ -24,9 +24,7 @@ export const config = {
     socketUrl: import.meta.env.VITE_SOCKET_URL || 'http://localhost:5000',
     apiUrl: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
 
-    // External APIs
-    geminiApiKey: import.meta.env.VITE_GEMINI_API_KEY,
-    youtubeApiKey: import.meta.env.VITE_YOUTUBE_API_KEY,
+    // External APIs (URLs only - API keys are handled server-side)
     cityBikesApiUrl: import.meta.env.VITE_CITYBIKES_API_URL || 'https://api.citybik.es/v2/networks',
     remotiveApiUrl: import.meta.env.VITE_REMOTIVE_API_URL || 'https://remotive.com/api/remote-jobs',
 

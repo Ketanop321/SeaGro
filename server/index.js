@@ -12,6 +12,7 @@ import userRoutes from './routes/userRoutes.js';
 import chatRoutes from './routes/chatRoutes.js';
 import profileRoutes from './routes/profileRoutes.js';
 import postRoutes from './routes/postRoutes.js';
+import aiRoutes from './routes/aiRoutes.js';
 import setupChatHandlers from './socket/chatHandler.js';
 import { errorHandler, notFound } from './middleware/errorMiddleware.js';
 import { logger } from './utils/logger.js';
@@ -109,6 +110,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/chat', chatRoutes);
 app.use('/api/profiles', profileRoutes);
 app.use('/api/posts', postRoutes);
+app.use('/api/ai', aiRoutes);
 
 // Setup Socket.IO handlers
 setupChatHandlers(io);
