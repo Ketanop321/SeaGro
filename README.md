@@ -251,31 +251,3 @@ npm run test:coverage
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-### Code Style
-- Use ESLint and Prettier configurations
-- Follow React best practices
-- Write meaningful commit messages
-- Add tests for new features
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🆘 Support
-
-For support, email support@seagro.com or join our community chat.
-
-## 🗺 Roadmap
-
-- [ ] Mobile app (React Native)
-- [ ] Advanced analytics dashboard
-- [ ] Video calling integration
-- [ ] AI-powered job matching
-- [ ] Multi-language support
-- [ ] Advanced file sharing
-- [ ] Integration with more external APIs
-- [ ] Advanced user roles and permissions
-
----
-
-Built with ❤️ by the SeaGro team
